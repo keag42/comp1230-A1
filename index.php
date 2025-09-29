@@ -91,9 +91,8 @@ function displayForm($currentQuestion, $category, $highlightCorrect = false, $us
     echo "<form method='POST' action='' onsubmit='return validateAnswerForm()' >";
 
     // Normalize correctAnswer to array
-    $correctAnswers = is_array($currentQuestion['correctAnswer'])
-            ? $currentQuestion['correctAnswer']
-            : [$currentQuestion['correctAnswer']];
+    $correctAnswers = is_array($currentQuestion['correctAnswer']) ?
+            $currentQuestion['correctAnswer'] : [$currentQuestion['correctAnswer']];
 
     echo "<input type='hidden' name='realAnswer' value='" . htmlspecialchars(json_encode($correctAnswers)) . "'>";
     echo "<input type='hidden' name='questionData' value='" . htmlspecialchars(json_encode($currentQuestion)) . "'>";
@@ -154,7 +153,7 @@ function displayForm($currentQuestion, $category, $highlightCorrect = false, $us
     }
 }
 
-// Show a question only AFTER category selection
+// Show a question after category selection
 if ($categorySelected && !isset($_POST['possibleAnswer']) && !isset($_POST['possibleAnswer'])) {
     $currentQuestion = null;
 
@@ -192,5 +191,8 @@ if(isset($_POST["realAnswer"]) && isset($_POST["possibleAnswer"])) {
 
     displayForm($questionData, $category, true, $quizAnswer);
 }
+show_source(__FILE__);
 ?>
+
+
 
